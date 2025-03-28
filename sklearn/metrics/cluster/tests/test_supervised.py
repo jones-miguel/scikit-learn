@@ -221,6 +221,9 @@ def test_adjusted_mutual_info_score():
     b110 = np.array([list(labels_b) * 110]).flatten()
     ami = adjusted_mutual_info_score(a110, b110)
     assert_almost_equal(ami, 0.38, 2)
+    # Test with very small number of samples and clusters
+    ami = adjusted_mutual_info_score([1, 2], [3, 4])
+    assert ami == pytest.approx(1.0)
 
 
 def test_expected_mutual_info_overflow():
